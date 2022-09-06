@@ -13,11 +13,11 @@
     "graphql": "^16.6.0",
     "graphql-ws": "^5.10.1",
     "moralis": "^2.2.0",
-    "parse-dashboard": "^4.1.4",
     "parse-server": "^5.2.4"
   },
   "devDependencies": {
     "@moralisweb3/eslint-config": "^1.0.0",
+    "@types/node": "^18.7.15",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "axios": "^0.27.2",

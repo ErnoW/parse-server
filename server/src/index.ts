@@ -1,7 +1,6 @@
 import Moralis from 'moralis';
 import express from 'express';
 import cors from 'cors';
-import { parseDashboard } from './parseDashboard';
 import { parseServer } from './parseServer';
 import { errorHandler } from './middlewares/errorHandler';
 import config from './config';
@@ -19,8 +18,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(`/${config.SERVER_ENDPOINT}`, parseServer);
-app.use('/dashboard', parseDashboard);
+app.use(`/server`, parseServer);
 app.use('/api', apiRouter);
 app.use(errorHandler);
 
