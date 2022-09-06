@@ -17,11 +17,11 @@ const getModulePrefix = (module: Module) => {
 const generateCloudCode = (module: Module, endpoint: Endpoint) => {
   let code = '';
   const name = `${getModulePrefix(module)}${endpoint.name}`;
-  code += `Parse.Cloud.define("${name}", async ({params, user, ip}) => {
+  code += `Parse.Cloud.define("${name}", async ({params, user, ip}: any) => {
   try {
     await beforeApiRequest(user, ip, '${endpoint.name}');
     const result = await Moralis.${module}.${endpoint.group}.${endpoint.name}(params);
-    return result.raw;
+    return result?.raw;
   } catch (error) {
     throw new Error(getErrorMessage(error, '${name}'));
   }
@@ -31,21 +31,26 @@ const generateCloudCode = (module: Module, endpoint: Endpoint) => {
 };
 
 const generateAllCloudCode = (module: Module, endpoints: Endpoint[]) => {
-  let output = `/* global Parse */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const Moralis = require('moralis').default
-const { handleRateLimit } = require('../utils/rateLimit');
+  let output = `/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Moralis from 'moralis'
+import { MoralisError } from '@moralisweb3/core';
+import { handleRateLimit } from '../../rateLimit'
+import { AxiosError } from 'axios'
+declare const Parse: any;
 
-const getErrorMessage = (error, name) => {
+const getErrorMessage = (error: Error, name: string) => {
   // Resolve Axios data inside the MoralisError
-  if (error.cause && error.cause.response && error.cause.response.data) {
+  if (
+    error instanceof MoralisError &&
+    error.cause &&
+    error.cause instanceof AxiosError &&
+    error.cause.response &&
+    error.cause.response.data
+  ) {
     return JSON.stringify(error.cause.response.data);
   }
 
-  if (error instanceof Error) {
-    return error.message;
-  }
-  
   if (error instanceof Error) {
     return error.message;
   } 
@@ -53,7 +58,7 @@ const getErrorMessage = (error, name) => {
   return \`API error while calling \${name}\`
 }
 
-const beforeApiRequest = async (user, ip, name) => {
+const beforeApiRequest = async (user: any, ip: any, name: string) => {
   if (!(await handleRateLimit(user, ip))) {
     throw new Error(
       \`Too many requests to \${name} API from this particular client, the clients needs to wait before sending more requests.\`

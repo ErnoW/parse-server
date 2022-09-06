@@ -8,7 +8,6 @@ Below is the list of supported features
 
 - [x] Support for SDK v1 on the client (moralis-v1 package)
 - [x] Self hosted server
-- [x] Self hosted dashboard
 - [x] Express Api
 
 The following Moralis features are supported:
@@ -46,8 +45,9 @@ Now your app is running locally with the following endpoints:
 
 - **Client**: `localhost:3000` (or `localhost:1337` or any other port you set in `.env`, which will serve the `client/build` folder)
 - **Parse Server**: `localhost:1337/server` (or any other port/endpoint you set in `.env`)
-- **Parse Dashboard**: `localhost:1337/dashboard` (or any other port you set in `.env`)
 - **Express API**: `localhost:1337/api` (or any other port you set in `.env`)
+
+Note: by default the cloud-code is referenced in build/cloud, so make sure to run `yarn build` before running the server. Or change the location of the cloud code.
 
 ## Run mongo-db
 
@@ -71,6 +71,7 @@ For rate-limiting, we are using a redis instance. In order for this to work, you
 For local development you will need to install redis on your local machine, and start the service. Make sure to set the `REDIS_CONNECTION_STRING` in your `.env` file
 
 ## Deploy
+
 
 
 
@@ -129,3 +130,6 @@ All Moralis plugins on the hosted moralis servers are wrappers for external APIs
 ### Custom cloud functions
 
 Your custom cloud functions can be listed in `/cloud/main.js`. Or you can define them in another file and import them in `/cloud/main.js`.
+
+### Dashboard
+TODO

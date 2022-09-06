@@ -2,7 +2,7 @@ import { createCloudFile } from "./utils/generateApiCloudCode";
 import { fetchEndpoints } from "./utils/prepareSwaggerForApi";
 import path from 'path'
 
-const OUTPUT_FILE = path.join(__dirname, '../cloud/generated', 'evmApi.js');
+const OUTPUT_FILE = path.join(__dirname, '../src/cloud/generated', 'evmApi.ts');
 const API_SWAGGER_URL = 'https://deep-index.moralis.io/api-docs/v2/swagger.json';
 
 
