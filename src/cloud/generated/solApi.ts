@@ -36,6 +36,7 @@ const beforeApiRequest = async (user: any, ip: any, name: string) => {
 Parse.Cloud.define("sol-balance", async ({params, user, ip}: any) => {
   try {
     await beforeApiRequest(user, ip, 'balance');
+    //@ts-ignore
     const result = await Moralis.SolApi.account.balance(params);
     return result?.raw;
   } catch (error) {
