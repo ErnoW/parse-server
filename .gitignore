@@ -1,0 +1,44 @@
+# node_modules
+node_modules/
+
+# Error / debug
+lerna-debug.log
+npm-debug.log
+yarn-error.log
+
+# docs
+docs/
+
+# gh-pages
+pages/
+
+# Build
+**/build
+**/lib
+**/dist
+**/lib
+**/lib.esm
+**/coverage
+
+logs/
+
+
+# Typescript
+**/tsconfig.tsbuildinfo
+
+# Test coverage
+**/coverage
+
+# Turbo
+.turbo
+
+# Env files
+.env
+
+# Other
+.DS_Store
+.tmp/
+TODO.md
+archive/**/*
+.vscode/
+dump.rdb
