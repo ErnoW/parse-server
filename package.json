@@ -30,6 +30,7 @@
   },
   "scripts": {
     "dev": "ts-node src/index.ts",
+    "start": "yarn build && node build/index.js",
     "build": "tsc",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --write 'src/**/*.{js,ts}'",
