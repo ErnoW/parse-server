@@ -16,8 +16,6 @@ export default cleanEnv(process.env, {
   APPLICATION_ID: str(),
   SERVER_URL: str(),
 
-  ALLOW_INSECURE_HTTP: bool({ default: false }),
-
   REDIS_CONNECTION_STRING: str(),
   RATE_LIMIT_TTL: num({ default: 30 }),
   RATE_LIMIT_AUTHENTICATED: num({ default: 50 }),

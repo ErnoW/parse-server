@@ -18,11 +18,11 @@ Parse.Cloud.define('requestMessage', async ({ params }: any) => {
 });
 
 Parse.Cloud.define('getPluginSpecs', () => {
-  // Not implemented, only excists to remove client-side errors when using the moralis-v1 package
+  // Not implemented, only exists to remove client-side errors when using the moralis-v1 package
   return [];
 });
 
 Parse.Cloud.define('getServerTime', () => {
-  // Not implemented, only excists to remove client-side errors when using the moralis-v1 package
+  // Not implemented, only exists to remove client-side errors when using the moralis-v1 package
   return null;
 });
